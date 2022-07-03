@@ -1,13 +1,5 @@
 import math
 import time
-try:
-    # Transitional fix for breaking change in LTR559
-    from ltr559 import LTR559
-    ltr559 = LTR559()
-except ImportError:
-    import ltr559
-
-
 
 def get_char_bar(luminance_index: float, screen_width: int) -> list:
     """uses maths to get the horizontal bar that is repeated vertically"""
@@ -51,31 +43,16 @@ def render(luminance_index):
         print()
 
 
-
-def get_level():
-    lux_list = []
-    lux = ltr559.get_lux()
-
-    lux_list.append(lux)
-    if len(lux_list>30):
-        del lux_list[0]
-    
-    max_lux = max(lux_list)
-
-    return lux, max_lux
-
 # print('\x1b[2J') # clear screen escape sequence
 
-# max_range = 20
-# mock_input = [0,0,0,1,2,3,5,7,5,4,2,1,1,1,0,0,3,4,7,8,9,5,4,3,0,0,1]
-# max_in = max(mock_input)
-
+max_range = 20
+mock_input = [0,0,0,1,2,3,5,7,5,4,2,1,1,1,0,0,3,4,7,8,9,5,4,3,0,0,1]
+max_in = max(mock_input)
 refresh_time = 0.01
 
 
 if __name__ == "__main__":
-    while True:
-        lux, max_lux = get_level()
-        luminance_index = lux/max_lux # take this into a normalize luminance function - for now, int between 0,1
+    for i in mock_input:
+        luminance_index = i/max_in # take this into a normalize luminance function - for now, int between 0,1
         render(luminance_index)
         time.sleep(refresh_time)
