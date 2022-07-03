@@ -55,6 +55,8 @@ def render(luminance_index):
 def get_level():
     lux_list = []
     lux = ltr559.get_lux()
+    if lux == 0:
+        lux = 0.01
 
     lux_list.append(lux)
     if len(lux_list)>30:
