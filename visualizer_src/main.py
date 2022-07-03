@@ -57,7 +57,7 @@ def get_level():
     lux = ltr559.get_lux()
 
     lux_list.append(lux)
-    if len(lux_list>30):
+    if len(lux_list)>30:
         del lux_list[0]
     
     max_lux = max(lux_list)
